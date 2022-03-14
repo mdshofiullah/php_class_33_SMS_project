@@ -268,7 +268,7 @@
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg"
                              alt="Header Avatar">
-                        <span class="d-none d-xl-inline-block ml-1">Henry</span>
+                        <span class="d-none d-xl-inline-block ml-1">{{ Auth::user()->name }}</span>
                         <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
@@ -283,7 +283,6 @@
                         </a>
                         <form action="{{ route('logout') }}" method="post" id="logoutForm">
                             @csrf
-
                         </form>
                     </div>
                 </div>
@@ -312,9 +311,8 @@
                             <i class="bx bx-home-circle"></i><span class="badge badge-pill badge-info float-right"></span>
                             <span>Dashboards</span>
                         </a>
-
                     </li>
-
+                    @if(Auth::user()->id == 1)
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <i class="bx bx-layout"></i>
@@ -325,7 +323,7 @@
                             <li><a href="{{ route('manage-user') }}">Manage User</a></li>
                         </ul>
                     </li>
-
+                    @endif
 
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">

@@ -5,9 +5,9 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Manage Teacher</h4>
+                    <h4 class="card-title fw-bolder text-center">Manage Teacher</h4>
                     <div class="table-responsive">
-                        <table class="table table-hover mb-0">
+                        <table class="table table-bordered text-center table-hover mb-0">
 
                             <thead>
                             <tr>

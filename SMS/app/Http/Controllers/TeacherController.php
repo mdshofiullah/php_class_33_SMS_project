@@ -14,4 +14,8 @@ class TeacherController extends Controller
     {
         return view('admin.teacher.manage');
     }
+    public function create(Request $request)
+    {
+
+    }
 }

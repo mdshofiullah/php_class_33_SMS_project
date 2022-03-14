@@ -2,12 +2,12 @@
 
 @section('body')
     <div class="row">
-        <div class="col-lg-10">
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-4">Add Teacher form</h4>
+                    <h4 class="card-title mb-4 text-center fw-bolder">Add Teacher form</h4>
 
-                    <form>
+                    <form action="{{ route('new-teacher') }}" method="post">
                         @csrf
                         <div class="form-group row mb-4">
                             <label for="horizontal-firstname-input" class="col-sm-3 col-form-label">Full name</label>
