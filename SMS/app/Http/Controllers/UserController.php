@@ -44,7 +44,10 @@ class UserController extends Controller
     }
     public function delete($id)
     {
+        $this->user = User::find($id);
 
+        $this->user->delete();
+        return redirect('/manage-user')->with('message','User Deleted Successfully');
     }
 
 }

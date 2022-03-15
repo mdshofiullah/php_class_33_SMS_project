@@ -5,37 +5,45 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title fw-bolder text-center">Manage Teacher</h4>
+                    <h4 class="card-title fw-bolder text-center">Manage User</h4>
+                    <p class="text-center text-success">{{ Session::get('message') }}</p>
                     <div class="table-responsive">
-                        <table class="table table-bordered text-center table-hover mb-0">
+                        <table class="table table-bordered table-hover mb-0 text-center">
 
                             <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Full Name</th>
+                                <th>Code</th>
                                 <th>Email</th>
-                                <th>Username</th>
+                                <th>Mobile</th>
+                                <th>Address</th>
+                                <th>Image</th>
+                                <th>Status</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
+                            @foreach($teachers as $teacher)
+                                <tr>
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $teacher->name }}</td>
+                                    <td>{{ $teacher->code }}</td>
+                                    <td>{{ $teacher->email }}</td>
+                                    <td>{{ $teacher->mobile }}</td>
+                                    <td>{{ $teacher->address }}</td>
+                                    <td><img src="{{ asset($teacher->image) }}" alt="" width="50" height="50"></td>
+                                    <td>{{ $teacher->status }}</td>
+                                    <td>
+                                        <a href="{{ route('edit-teacher', ['id'=> $teacher->id]) }}" class="btn btn-success btn-sm">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a href="{{ route('delete-teacher', ['id'=>$teacher->id]) }}" class="btn btn-danger btn-sm ">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
