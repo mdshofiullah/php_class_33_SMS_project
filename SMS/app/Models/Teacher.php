@@ -31,6 +31,7 @@ class Teacher extends Model
         self::$teacher->name       = $request->name;
         self::$teacher->code       = $code;
         self::$teacher->email      = $request->email;
+        self::$teacher->password   = bcrypt($request->mobile);
         self::$teacher->mobile     = $request->mobile;
         self::$teacher->address    = $request->address;
         self::$teacher->image      = self::getImageUrl($request);
@@ -58,6 +59,7 @@ class Teacher extends Model
         self::$teacher->mobile     = $request->mobile;
         self::$teacher->address    = $request->address;
         self::$teacher->image      = self::$imageUrl;
+        self::$teacher->status     = $request->status;
         self::$teacher->save();
     }
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\TeacherDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,10 @@ Route::get('/', [WebController::class, 'index'])->name('home');
 Route::get('/course-detail', [WebController::class, 'detail'])->name('course-detail');
 Route::get('/user-login', [AuthController::class, 'login'])->name('user-login');
 Route::get('/user-register', [AuthController::class, 'register'])->name('user-register');
+
+Route::get('teacher-dashboard', [TeacherDashboardController::class, 'index'])->name('teacher-dashboard');
+
+Route::post('/new-login', [AuthController::class, 'newLogin'])->name('new-login'); // teacher or student login
 
 
 //================>Home page routes Ends here<=========================
