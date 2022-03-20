@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TeacherDashboardController;
+use App\Http\Controllers\SubjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +26,16 @@ Route::get('/course-detail', [WebController::class, 'detail'])->name('course-det
 Route::get('/user-login', [AuthController::class, 'login'])->name('user-login');
 Route::get('/user-register', [AuthController::class, 'register'])->name('user-register');
 
-Route::get('teacher-dashboard', [TeacherDashboardController::class, 'index'])->name('teacher-dashboard');
+Route::get('/teacher-dashboard', [TeacherDashboardController::class, 'index'])->name('teacher-dashboard');
 
 Route::post('/new-login', [AuthController::class, 'newLogin'])->name('new-login'); // teacher or student login
+Route::post('/user-logout', [AuthController::class, 'logout'])->name('user-logout'); // teacher or student logout
+// subject or course add, manage, create
+Route::get('/add-subject', [SubjectController::class, 'index'])->name('add-subject');
+Route::get('/manage-subject', [SubjectController::class, 'manage'])->name('manage-subject');
+
+Route::post('/new-subject', [SubjectController::class, 'create'])->name('new-subject');
+
 
 
 //================>Home page routes Ends here<=========================

@@ -15,10 +15,7 @@ class AuthController extends Controller
     {
         return view('login.login');
     }
-    public function register()
-    {
-        return view('login.register');
-    }
+
     public function newLogin(Request $request)
     {
         if ($request->check == 1)
@@ -30,6 +27,7 @@ class AuthController extends Controller
                 {
                     Session::put('user_id', $this->user->id);
                     Session::put('user_name', $this->user->name);
+                    Session::put('user_image', $this->user->image);
 
                     return redirect('teacher-dashboard');
 
@@ -49,5 +47,17 @@ class AuthController extends Controller
         {
 
         }
+    }
+    public function register()
+    {
+        return view('login.register');
+    }
+    public function logout()
+    {
+        Session::forget('user_id');
+        Session::forget('user_name');
+        Session::forget('user_image');
+
+        return redirect('/');
     }
 }
