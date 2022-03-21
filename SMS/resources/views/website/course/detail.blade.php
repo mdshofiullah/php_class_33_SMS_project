@@ -10,22 +10,19 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="card card-body">
-                        <img src="{{ asset('/img/c4.jpg') }}" alt="" class="w-100" />
+                        <img src="{{ asset($subject->image) }}" alt="" class="w-100" />
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="card card-body">
-                        <h1>Course Title 1</h1>
-                        <p>Course fee:15,600/-</p>
+                        <h1>{{ $subject->title }}</h1>
+                        <p>Course Fee: {{ $subject->fee }}Tk</p>
+                        <a href="{{ route('enroll-now', ['id' => $subject->id]) }}" name="" class="btn btn-outline-success w-25 mx-auto">Enroll Now</a>
                         <hr/>
-                        <h3>Trainer Name Goes Here</h3>
-                        <ul>
-                            <li><a href="">Trainer LinkedIn</a></li>
-                            <li><a href="">Trainer Facebook</a></li>
-                            <li><a href="">Trainer Twitter</a></li>
-                        </ul>
+                        <h3>Trainer Name {{ $subject->teacher->name }}</h3>
+                        <img src="{{ asset($subject->teacher->image) }}" alt="" height="100" width="100" />
                         <hr/>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, repudiandae.</p>
+                        <div>{!! $subject->short_description !!}</div>
                     </div>
                 </div>
             </div>
@@ -39,12 +36,9 @@
                     <div class="card card-body">
                         <h1>Course Modul details</h1>
                         <hr/>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam autem beatae deleniti ducimus ea explicabo impedit in maxime minus molestiae nemo placeat, quas, reprehenderit repudiandae rerum sunt, veniam. Eligendi, illo!</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam autem beatae deleniti ducimus ea explicabo impedit in maxime minus molestiae nemo placeat, quas, reprehenderit repudiandae rerum sunt, veniam. Eligendi, illo!</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam autem beatae deleniti ducimus ea explicabo impedit in maxime minus molestiae nemo placeat, quas, reprehenderit repudiandae rerum sunt, veniam. Eligendi, illo!</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam autem beatae deleniti ducimus ea explicabo impedit in maxime minus molestiae nemo placeat, quas, reprehenderit repudiandae rerum sunt, veniam. Eligendi, illo!</p>
+                        <div>{!! $subject->long_description !!}</div>
                         <hr/>
-                        <a href="" class="btn btn-outline-success w-25 mx-auto  ">Enroll Now</a>
+                        <a href="{{ route('enroll-now', ['id' => $subject->id]) }}" class="btn btn-outline-success w-25 mx-auto  ">Enroll Now</a>
                     </div>
                 </div>
             </div>
