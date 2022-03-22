@@ -14,7 +14,7 @@
                             Enroll Form
                         </div>
                         <div class="card-body">
-                            <form action="" method="post">
+                            <form action="{{ route('new-enroll', ['id' => $id]) }}" method="post">
                                 @csrf
                                 <div class="row">
                                     <label for="" class="col-md-3">Student Name</label>
