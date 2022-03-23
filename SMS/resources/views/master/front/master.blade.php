@@ -18,12 +18,17 @@
                 <li><a href="{{ route('home') }}" class="nav-link fw-bold ">Home</a></li>
                 <li><a href="" class="nav-link fw-bold ">All Course</a></li>
                 @if(Session::get('student_id'))
+
                 <li class="dropdown">
                     <a href="{{ route('user-login') }}" class="nav-link dropdown-toggle fw-bold" data-bs-toggle="dropdown">
                         {{ Session::get('student_name') }}
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="" class="dropdown-item">Logout</a></li>
+                        <li><a href="{{ route('student-dashboard') }}" class="nav-link">Dashboard</a></li>
+                        <li><a href="" onclick="event.preventDefault();document.getElementById('studentLogoutForm').submit();" class="dropdown-item">Logout</a></li>
+                        <form action="{{ route('student-logout') }}" method="post" id="studentLogoutForm">
+                            @csrf
+                        </form>
                     </ul>
                 </li>
                 @else

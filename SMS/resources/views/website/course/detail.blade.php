@@ -1,4 +1,4 @@
-@extends('master.front.master');
+@extends('master.front.master')
 
 @section('title')
     Details Page
@@ -22,7 +22,7 @@
                     <div class="card card-body">
                         <h1>{{ $subject->title }}</h1>
                         <p>Course Fee: {{ $subject->fee }}Tk</p>
-                        <a href="{{ route('enroll-now', ['id' => $subject->id]) }}" name="" class="btn btn-outline-success w-25 mx-auto">Enroll Now</a>
+                        <a href="{{ route('enroll-now', ['id' => $subject->id]) }}" name="" class="btn btn-success w-25 mx-auto {{ $check == true ? 'disabled btn-danger':'' }}">Enroll Now</a>
                         <hr/>
                         <h3>Trainer Name {{ $subject->teacher->name }}</h3>
                         <img src="{{ asset($subject->teacher->image) }}" alt="" height="100" width="100" />
@@ -43,7 +43,7 @@
                         <hr/>
                         <div>{!! $subject->long_description !!}</div>
                         <hr/>
-                        <a href="{{ route('enroll-now', ['id' => $subject->id]) }}" class="btn btn-outline-success w-25 mx-auto  ">Enroll Now</a>
+                        <a href="{{ route('enroll-now', ['id' => $subject->id]) }}" class="btn btn-success w-25 mx-auto {{ $check == true ? 'disabled btn-danger':'' }} ">Enroll Now</a>
                     </div>
                 </div>
             </div>

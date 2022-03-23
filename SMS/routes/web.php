@@ -9,6 +9,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TeacherDashboardController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\AdminCourseController;
+use App\Http\Controllers\StudentDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,10 +32,12 @@ Route::post('/new-enroll/{id}', [WebController::class, 'newEnroll'])->name('new-
 Route::get('/user-login', [AuthController::class, 'login'])->name('user-login');
 Route::get('/user-register', [AuthController::class, 'register'])->name('user-register');
 
-Route::get('/teacher-dashboard', [TeacherDashboardController::class, 'index'])->name('teacher-dashboard');
+Route::get('/teacher-dashboard', [TeacherDashboardController::class, 'index'])->name('teacher-dashboard'); //teacher dashboard
+Route::get('/student-dashboard', [StudentDashboardController::class, 'index'])->name('student-dashboard'); //student dashboard
 
 Route::post('/new-login', [AuthController::class, 'newLogin'])->name('new-login'); // teacher or student login
-Route::post('/user-logout', [AuthController::class, 'logout'])->name('user-logout'); // teacher or student logout
+Route::post('/user-logout', [AuthController::class, 'logout'])->name('user-logout'); // teacher
+Route::post('/student-logout', [AuthController::class, 'studentLogout'])->name('student-logout'); // student logout
 // subject or course add, manage, create
 Route::get('/add-subject', [SubjectController::class, 'index'])->name('add-subject');
 Route::get('/manage-subject', [SubjectController::class, 'manage'])->name('manage-subject');

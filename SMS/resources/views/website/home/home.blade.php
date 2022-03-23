@@ -5,7 +5,7 @@
 
 @section('body')
 
-    <section class="notice-section py-5">
+    <section class="notice-section py-lg-5">
         <div class="container">
             <div class="carousel slide" data-bs-ride="carousel" data-bs-interval="2200">
                 <div class="carousel-inner text-center">
