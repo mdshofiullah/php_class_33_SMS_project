@@ -10,6 +10,7 @@ use App\Http\Controllers\TeacherDashboardController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\AdminCourseController;
 use App\Http\Controllers\StudentDashboardController;
+use App\Http\Controllers\AdminStudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +45,9 @@ Route::get('/manage-subject', [SubjectController::class, 'manage'])->name('manag
 
 Route::post('/new-subject', [SubjectController::class, 'create'])->name('new-subject');
 
-
+// teacher approved course
+Route::get('/approved-course', [SubjectController::class, 'approved'])->name('approved-course');
+Route::get('/enrolled-student/{id}', [SubjectController::class, 'enrolledStudent'])->name('enrolled-student');
 
 //================>Home page routes Ends here<=========================
 
@@ -72,6 +75,12 @@ Route::middleware(['auth:sanctum', 'verified'])->post('/update-teacher{id}', [Te
 Route::middleware(['auth:sanctum', 'verified'])->get('/manage-course', [AdminCourseController::class, 'manage'])->name('manage-course');
 Route::middleware(['auth:sanctum', 'verified'])->get('/view-detail/{id}', [AdminCourseController::class, 'details'])->name('view-detail');
 Route::middleware(['auth:sanctum', 'verified'])->get('/update-status/{id}', [AdminCourseController::class, 'updateStatus'])->name('update-status');
+
+//Student Manage
+Route::middleware(['auth:sanctum', 'verified'])->get('/manage-student', [AdminStudentController::class, 'manageStudent'])->name('manage-student');
+Route::middleware(['auth:sanctum', 'verified'])->get('/manage-student-course', [AdminStudentController::class, 'manageStudentCourse'])->name('manage-student-course');
+Route::middleware(['auth:sanctum', 'verified'])->get('/student-status/{id}', [AdminStudentController::class, 'updateStatus'])->name('student-status');
+Route::middleware(['auth:sanctum', 'verified'])->get('/update-enroll-status/{id}', [AdminStudentController::class, 'updateEnrollStatus'])->name('update-enroll-status');
 
 
 //================>Admin page routes Ends here<=========================
