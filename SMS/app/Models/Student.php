@@ -45,6 +45,18 @@ class Student extends Model
     {
         self::$student = Student::find($id);
         self::$student->password = bcrypt($request->password);
+
         self::$student->save();
+    }
+    public static function newStudent($request)
+    {
+        self::$student = new Student();
+        self::$student->name        = $request->name;
+        self::$student->email       = $request->email;
+        self::$student->mobile      = $request->mobile;
+        self::$student->password    = bcrypt($request->password);
+
+        self::$student->save();
+        return self::$student;
     }
 }

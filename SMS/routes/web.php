@@ -29,10 +29,12 @@ Route::get('/course-detail/{id}', [WebController::class, 'detail'])->name('cours
 Route::get('/enroll-now/{id}', [WebController::class, 'enroll'])->name('enroll-now');
 
 Route::post('/new-enroll/{id}', [WebController::class, 'newEnroll'])->name('new-enroll');
-
+//new user create
 Route::get('/user-login', [AuthController::class, 'login'])->name('user-login');
 Route::get('/user-register', [AuthController::class, 'register'])->name('user-register');
 
+Route::post('/new-registration', [AuthController::class, 'newRegistration'])->name('new-registration');
+//
 Route::get('/teacher-dashboard', [TeacherDashboardController::class, 'index'])->name('teacher-dashboard'); //teacher dashboard
 
 Route::post('/new-login', [AuthController::class, 'newLogin'])->name('new-login'); // teacher or student login

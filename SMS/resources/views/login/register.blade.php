@@ -14,7 +14,7 @@
                             Register Form
                         </div>
                         <div class="card-body">
-                            <form action="" method="post">
+                            <form action="{{ route('new-registration') }}" method="post">
                                 @csrf
                                 <div class="row">
                                     <label for="" class="col-md-3">Name</label>
@@ -26,6 +26,12 @@
                                     <label for="" class="col-md-3">Email Address</label>
                                     <div class="col-md-9">
                                         <input type="email" class="form-control" name="email"/>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <label for="" class="col-md-3">Mobile Number</label>
+                                    <div class="col-md-9">
+                                        <input type="number" class="form-control" name="mobile"/>
                                     </div>
                                 </div>
                                 <div class="row mt-3">
