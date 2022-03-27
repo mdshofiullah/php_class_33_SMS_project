@@ -34,11 +34,20 @@ Route::get('/user-login', [AuthController::class, 'login'])->name('user-login');
 Route::get('/user-register', [AuthController::class, 'register'])->name('user-register');
 
 Route::get('/teacher-dashboard', [TeacherDashboardController::class, 'index'])->name('teacher-dashboard'); //teacher dashboard
-Route::get('/student-dashboard', [StudentDashboardController::class, 'index'])->name('student-dashboard'); //student dashboard
 
 Route::post('/new-login', [AuthController::class, 'newLogin'])->name('new-login'); // teacher or student login
 Route::post('/user-logout', [AuthController::class, 'logout'])->name('user-logout'); // teacher
 Route::post('/student-logout', [AuthController::class, 'studentLogout'])->name('student-logout'); // student logout
+
+
+//student dashboard
+Route::get('/student-dashboard', [StudentDashboardController::class, 'index'])->name('student-dashboard');
+Route::get('/student-profile', [StudentDashboardController::class, 'studentProfile'])->name('student-profile');
+Route::get('/change-password', [StudentDashboardController::class, 'changePassword'])->name('change-password');
+
+Route::post('/update-student-profile/{id}', [StudentDashboardController::class, 'updateStudentProfile'])->name('update-student-profile');
+Route::post('/update-student-password/{id}', [StudentDashboardController::class, 'updatePassword'])->name('update-student-password');
+
 // subject or course add, manage, create
 Route::get('/add-subject', [SubjectController::class, 'index'])->name('add-subject');
 Route::get('/manage-subject', [SubjectController::class, 'manage'])->name('manage-subject');
