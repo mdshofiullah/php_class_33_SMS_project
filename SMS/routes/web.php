@@ -29,40 +29,21 @@ Route::get('/course-detail/{id}', [WebController::class, 'detail'])->name('cours
 Route::get('/enroll-now/{id}', [WebController::class, 'enroll'])->name('enroll-now');
 
 Route::post('/new-enroll/{id}', [WebController::class, 'newEnroll'])->name('new-enroll');
+
 //new user create
 Route::get('/user-login', [AuthController::class, 'login'])->name('user-login');
 Route::get('/user-register', [AuthController::class, 'register'])->name('user-register');
 
 Route::post('/new-registration', [AuthController::class, 'newRegistration'])->name('new-registration');
-//
-Route::get('/teacher-dashboard', [TeacherDashboardController::class, 'index'])->name('teacher-dashboard'); //teacher dashboard
 
 Route::post('/new-login', [AuthController::class, 'newLogin'])->name('new-login'); // teacher or student login
 Route::post('/user-logout', [AuthController::class, 'logout'])->name('user-logout'); // teacher
 Route::post('/student-logout', [AuthController::class, 'studentLogout'])->name('student-logout'); // student logout
 
-
-//student dashboard
-Route::get('/student-dashboard', [StudentDashboardController::class, 'index'])->name('student-dashboard');
-Route::get('/student-profile', [StudentDashboardController::class, 'studentProfile'])->name('student-profile');
-Route::get('/change-password', [StudentDashboardController::class, 'changePassword'])->name('change-password');
-
-Route::post('/update-student-profile/{id}', [StudentDashboardController::class, 'updateStudentProfile'])->name('update-student-profile');
-Route::post('/update-student-password/{id}', [StudentDashboardController::class, 'updatePassword'])->name('update-student-password');
-
-// subject or course add, manage, create
-Route::get('/add-subject', [SubjectController::class, 'index'])->name('add-subject');
-Route::get('/manage-subject', [SubjectController::class, 'manage'])->name('manage-subject');
-
-Route::post('/new-subject', [SubjectController::class, 'create'])->name('new-subject');
-
-// teacher approved course
-Route::get('/approved-course', [SubjectController::class, 'approved'])->name('approved-course');
-Route::get('/enrolled-student/{id}', [SubjectController::class, 'enrolledStudent'])->name('enrolled-student');
-
 //================>Home page routes Ends here<=========================
 
 //================>Admin page routes starts here<======================
+// Individual Middleware method
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 //User Get method
 Route::middleware(['auth:sanctum', 'verified','superAdmin'])->get('/add-user', [UserController::class, 'index'])->name('add-user');
@@ -98,10 +79,33 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/update-enroll-status/{id}
 
 //================>Student page routes Starts here<=====================
 
+//student dashboard
+
+//group middleware
+Route::middleware(['student'])->group(function (){
+    Route::get('/student-dashboard', [StudentDashboardController::class, 'index'])->name('student-dashboard');
+    Route::get('/student-profile', [StudentDashboardController::class, 'studentProfile'])->name('student-profile');
+    Route::get('/change-password', [StudentDashboardController::class, 'changePassword'])->name('change-password');
+
+    Route::post('/update-student-profile/{id}', [StudentDashboardController::class, 'updateStudentProfile'])->name('update-student-profile');
+    Route::post('/update-student-password/{id}', [StudentDashboardController::class, 'updatePassword'])->name('update-student-password');
+});
+
 
 
 //================>Student page routes Ends here<=======================
 //================>Teacher page routes Starts here<=====================
+
+// subject or course add, manage, create------------>>> Individual middleware method
+Route::middleware(['teacher'])->get('/teacher-dashboard', [TeacherDashboardController::class, 'index'])->name('teacher-dashboard'); //teacher dashboard
+Route::middleware(['teacher'])->get('/add-subject', [SubjectController::class, 'index'])->name('add-subject');
+Route::middleware(['teacher'])->get('/manage-subject', [SubjectController::class, 'manage'])->name('manage-subject');
+// teacher approved course
+Route::middleware(['teacher'])->get('/approved-course', [SubjectController::class, 'approved'])->name('approved-course');
+Route::middleware(['teacher'])->get('/enrolled-student/{id}', [SubjectController::class, 'enrolledStudent'])->name('enrolled-student');
+
+
+Route::middleware(['teacher'])->post('/new-subject', [SubjectController::class, 'create'])->name('new-subject');
 
 
 //================>Teacher page routes Ends here<=======================

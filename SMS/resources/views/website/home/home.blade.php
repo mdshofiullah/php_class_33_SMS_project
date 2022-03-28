@@ -7,6 +7,7 @@
 
     <section class="notice-section py-lg-5">
         <div class="container">
+            <h4 class="text-center text-danger">{{ Session::get('message') }}</h4>
             <div class="carousel slide" data-bs-ride="carousel" data-bs-interval="2200">
                 <div class="carousel-inner text-center">
                     <div class="carousel-item active">
